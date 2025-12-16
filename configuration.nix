@@ -49,8 +49,8 @@
 
   qt = {
     enable = true;
-    style = lib.mkForce "gtk2";
-    platformTheme = "gtk2"; #can be qt5ct;
+    style = lib.mkForce "kvantum";
+    platformTheme = "qt5ct"; #can be qt5ct;
   };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -157,10 +157,86 @@
   environment.variables = {
     XCURSOR_THEME = "Dracula-cursor";
     XCURSOR_SIZE = "24";
+    INFLUX_TOKEN = "1U3fzAh3aTgrZwACibfv4sjHfNdVKu-VR80x4QXXoH_pGySUGSduzXmk2zUTZV50ZnTXzZHTQl6zLBXb9XmokA==";
+    POSTGRES_PASSWORD = "qazwsxedc";
   };
 
   programs.labwc.enable = true;
   services.xserver.windowManager.openbox.enable = true;
+  services.telegraf = {
+    enable = true;
+    environmentFiles = ["/etc/nixos/telegraf.env"];
+    extraConfig = {
+      global_tags = {
+        dc = "us-east-1";
+      };
+
+      agent = {
+        interval = "10s";
+	round_interval = true;
+	metric_batch_size = 1000;
+	metric_buffer_limit = 10000;
+	collection_jitter = "0s";
+	flush_interval = "10s";
+	flush_jitter = "0s";
+	precision = "0s";
+	hostname = "";
+      };
+
+      inputs = {
+        exec = [
+	{
+	  commands = ["sh -c 'source /etc/os-release && echo $PRETTY_NAME'"];
+	  timeout = "5s";
+	  data_format = "grok";
+	  name_override = "system_meta";
+	  grok_patterns = ["%{GREEDYDATA:os_type}"];
+	  interval = "0s";
+	}
+
+	{
+	  commands = ["sh -c \"ip -4 addr show scope global | grep inet | awk '{print \\$2}' | cut -d '/' -f 1 | head -n 1\""];
+	  timeout = "5s";
+	  data_format = "grok";
+	  name_override = "system_meta";
+	  grok_patterns = ["%{IP:ip_address}"];
+	  interval = "0s";
+	}
+	];
+
+	cpu = {
+	  percpu = true;
+	  totalcpu = true;
+	  collect_cpu_time = false;
+	  report_active = true;
+	  core_tags = false;
+	};
+
+	disk = {
+	  mount_points = ["/"];
+	  ignore_fs = ["tmpfs" "devtmpfs" "devfs" "iso9660" "overlay" "aufs" "squashfs"];
+	};
+
+	diskio = {};
+	kernel = {};
+	mem = {};
+	net = {};
+	processes = {};
+	swap = {};
+	system = {};
+      };
+      outputs = {
+        influxdb_v2 = {
+	  #urls = ["http://192.168.68.107:8086"];
+	  urls = ["http://192.168.7.107:8086"];
+	  token = "$INFLUX_TOKEN";
+	  organization = "code_tamers";
+	  bucket = "vdi_bucket";
+	  timeout = "5s";
+	};
+      };
+    };
+  };
 
   # Display manager (Wayland-native)
 
