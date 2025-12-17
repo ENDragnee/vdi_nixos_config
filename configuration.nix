@@ -207,6 +207,7 @@
         processes = { };
         swap = { };
         system = { };
+        system_meta = { };
       };
       outputs = {
         influxdb_v2 = {
