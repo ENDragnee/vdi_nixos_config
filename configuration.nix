@@ -228,7 +228,7 @@
       outputs = {
         influxdb_v2 = {
 	  #urls = ["http://192.168.68.107:8086"];
-	  urls = ["http://192.168.7.107:8086"];
+    urls = [ "http://192.168.53.107:8086" ];
 	  token = "$INFLUX_TOKEN";
 	  organization = "code_tamers";
 	  bucket = "vdi_bucket";
