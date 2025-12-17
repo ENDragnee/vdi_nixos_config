@@ -145,6 +145,8 @@
     python313
     python313Packages.pip
     pipx
+    sops
+    age
   ];
 
   services.xserver.displayManager.sessionCommands = ''
