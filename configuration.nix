@@ -189,11 +189,9 @@
       inputs = {
         exec = [
           {
-            commands = [ "sh -c 'source /etc/os-release && echo $PRETTY_NAME'" ];
+            commands = [ "./scripts/os_type.sh" ];
             timeout = "5s";
-            data_format = "grok";
-            name_override = "system_meta";
-            grok_patterns = [ "%{GREEDYDATA:os_type}" ];
+            data_format = "influx";
             interval = "0s";
           }
 
