@@ -187,24 +187,6 @@
       };
 
       inputs = {
-        exec = [
-          {
-            commands = [ "sh -c './scripts/os_type.sh'" ];
-            timeout = "5s";
-            data_format = "influx";
-            interval = "0s";
-          }
-
-          {
-            commands = [ "sh -c \"ip -4 addr show scope global | grep inet | awk '{print \\$2}' | cut -d '/' -f 1 | head -n 1\"" ];
-            timeout = "5s";
-            data_format = "grok";
-            name_override = "system_meta";
-            grok_patterns = [ "%{IP:ip_address}" ];
-            interval = "0s";
-          }
-        ];
-
         cpu = {
           percpu = true;
           totalcpu = true;
