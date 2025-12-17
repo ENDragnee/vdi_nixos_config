@@ -236,6 +236,12 @@
 	  bucket = "vdi_bucket";
 	  timeout = "5s";
 	};
+
+        kafka = {
+          brokers = [ "192.169.53.107:9092" ];
+          topic = "vm-metrics";
+          data_format = "json";
+        };
       };
     };
   };
