@@ -189,7 +189,7 @@
       inputs = {
         exec = [
           {
-            commands = [ "./scripts/os_type.sh" ];
+            commands = [ "sh -c './scripts/os_type.sh'" ];
             timeout = "5s";
             data_format = "influx";
             interval = "0s";
