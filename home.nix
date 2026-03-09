@@ -13,6 +13,7 @@
   imports = [
     ./modules/packages.nix
     ./modules/openbox.nix
+    ./modules/clipcat.nix
   ];
 
   programs.git = {
