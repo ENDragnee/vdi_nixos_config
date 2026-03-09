@@ -9,11 +9,15 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: {
     nixosConfigurations.vdi = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
 
       modules = [
         ./configuration.nix
@@ -21,10 +25,10 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          
+          home-manager.backupFileExtension = "backup";
           home-manager.users.vdi = import ./home.nix;
 
-          home-manager.sharedModules = [ { home.stateVersion = "25.05"; } ];
+          home-manager.sharedModules = [{home.stateVersion = "25.05";}];
         }
       ];
     };
