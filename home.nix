@@ -14,6 +14,7 @@
     ./modules/packages.nix
     ./modules/openbox.nix
     ./modules/clipcat.nix
+    ./modules/fish.nix
   ];
 
   programs.git = {
