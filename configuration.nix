@@ -22,7 +22,28 @@
   # Display manager
   services.xserver.displayManager.lightdm = {
     enable = true;
-    greeters.slick.enable = true;
+    greeters.slick = {
+      enable = true;
+
+      # Set the GTK theme for the login screen
+      theme = {
+        name = "Dracula";
+        package = pkgs.dracula-theme;
+      };
+
+      # Set the Icon theme for the login screen
+      iconTheme = {
+        name = "Dracula";
+        package = pkgs.dracula-icon-theme;
+      };
+
+      # Set the Cursor theme for the login screen
+      cursorTheme = {
+        name = "Dracula-cursors";
+        package = pkgs.dracula-theme;
+        size = 24;
+      };
+    };
   };
 
   # Wayland compositor

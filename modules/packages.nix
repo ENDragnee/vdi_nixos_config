@@ -32,6 +32,7 @@
     xarchiver
     vscode
     chromium
+    vlc
 
     # Openbox & X11 Tools
     openbox-menu
