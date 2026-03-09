@@ -16,6 +16,7 @@
     ./modules/clipcat.nix
     ./modules/fish.nix
     ./modules/theming.nix
+    ./modules/tint2.nix
   ];
 
   programs.git = {
