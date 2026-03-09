@@ -28,8 +28,7 @@
     clipcat
 
     # Apps
-    nemo
-    nemo-fileroller
+    nemo-with-extensions
     xarchiver
     vscode
     chromium
