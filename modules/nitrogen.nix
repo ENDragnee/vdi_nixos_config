@@ -9,10 +9,10 @@
   # 2. Configure Nitrogen's main settings (telling it where to look for wallpapers)
   xdg.configFile."nitrogen/nitrogen.cfg".text = ''
     [geometry]
-    posx=100
-    posy=100
-    sizex=800
-    sizey=600
+    posx=1062
+    posy=297
+    sizex=687
+    sizey=500
 
     [nitrogen]
     view=icon
