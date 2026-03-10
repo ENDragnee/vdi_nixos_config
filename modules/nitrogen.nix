@@ -4,7 +4,7 @@
   ...
 }: {
   # 1. Declaratively place the wallpaper file into your ~/.config/wallpapers/ directory
-  xdg.configFile."wallpapers/wallpaper.jpg".source = ./assets/wallpapers/lock.jpg;
+  xdg.configFile."wallpapers/lock.jpg".source = ./assets/wallpapers/lock.jpg;
 
   # 2. Configure Nitrogen's main settings (telling it where to look for wallpapers)
   xdg.configFile."nitrogen/nitrogen.cfg".text = ''
