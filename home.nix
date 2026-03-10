@@ -17,6 +17,8 @@
     ./modules/fish.nix
     ./modules/theming.nix
     ./modules/tint2.nix
+    ./modules/rofi.nix
+    ./modules/rofi-powermenu.nix
   ];
 
   programs.git = {
