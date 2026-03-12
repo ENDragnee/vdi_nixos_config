@@ -73,10 +73,11 @@
   services.dbus.enable = true;
   security.polkit.enable = true;
   services.openssh.enable = true;
+  virtualisation.docker.enable = true;
 
   users.users.vdi = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = ["wheel" "networkmanager" "docker"];
     shell = pkgs.fish;
   };
 
