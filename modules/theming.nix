@@ -41,6 +41,8 @@
     style.name = "kvantum";
   };
 
+  xdg.configFile."Kvantum/Dracula".source = "${pkgs.dracula-qt5-theme}/share/Kvantum/Dracula";
+
   # Tell Kvantum to actively use the Dracula theme
   xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
     [General]
