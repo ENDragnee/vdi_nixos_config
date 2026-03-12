@@ -19,6 +19,7 @@
     ./modules/tint2.nix
     ./modules/rofi.nix
     ./modules/rofi-powermenu.nix
+    ./modules/development.nix
     # ./modules/nitrogen.nix
   ];
 
