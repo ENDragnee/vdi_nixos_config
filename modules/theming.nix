@@ -9,7 +9,6 @@
     owner = "trancong12102";
     repo = "Yet-another-dracula";
     rev = "master";
-    # Use lib.fakeHash. Nix will fail and give you the real hash to paste here.
     hash = "sha256-/s04K9VCPetJPIey9EJr7rBxcR/dIsUBlpKPJsoxioQ=";
   };
 in {
@@ -52,12 +51,12 @@ in {
   };
 
   # --- THE FIX: Point to the 'Dracula' folder inside the GitHub repo ---
-  xdg.configFile."Kvantum/Dracula".source = "${dracula-kvantum-src}/Dracula";
+  xdg.configFile."Kvantum/Yet-another-dracula".source = dracula-kvantum-src;
 
   # Tell Kvantum to actively use the Dracula theme
   xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
     [General]
-    theme=Dracula
+    theme=Yet-another-dracula
   '';
 
   # 4. Explicitly Enforce Environment Variables
