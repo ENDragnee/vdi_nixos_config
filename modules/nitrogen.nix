@@ -11,8 +11,8 @@
     [geometry]
     posx=1062
     posy=297
-    sizex=1920
-    sizey=1080
+    sizex=687
+    sizey=500
 
     [nitrogen]
     view=icon

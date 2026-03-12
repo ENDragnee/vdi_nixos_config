@@ -6,7 +6,8 @@
   xdg.configFile."openbox/autostart" = {
     executable = true;
     text = ''
-      xrandr -s 1920x1080 &
+      xrandr -s 1920x1080
+      sleep 2
       nitrogen --restore &
       clipcatd &
       tint2 -c ~/.config/tint2/livia/livia.tint2rc &
