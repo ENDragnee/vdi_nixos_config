@@ -1,12 +1,23 @@
 {
   config,
   pkgs,
+  lib,
   ...
-}: {
-  # Add the Kvantum theme package to your user profile
-  # Kvantum will automatically detect themes placed here
+}: let
+  # Fetching the "Yet-another-dracula" Kvantum theme from GitHub
+  dracula-kvantum-src = pkgs.fetchFromGitHub {
+    owner = "trancong12102";
+    repo = "Yet-another-dracula";
+    rev = "master";
+    # Use lib.fakeHash. Nix will fail and give you the real hash to paste here.
+    hash = lib.fakeHash;
+  };
+in {
+  # We no longer need dracula-qt5-theme from Nixpkgs since we are fetching it manually
   home.packages = with pkgs; [
-    dracula-qt5-theme
+    # Keep other theme-related packages
+    dracula-theme
+    dracula-icon-theme
   ];
 
   # 1. Cursor Configuration
@@ -29,7 +40,6 @@
       name = "Dracula";
       package = pkgs.dracula-icon-theme;
     };
-    # Force dark mode for GTK3/GTK4 apps
     gtk3.extraConfig = {gtk-application-prefer-dark-theme = 1;};
     gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
   };
@@ -41,7 +51,8 @@
     style.name = "kvantum";
   };
 
-  xdg.configFile."Kvantum/Dracula".source = "${pkgs.dracula-qt5-theme}/share/Kvantum/Dracula";
+  # --- THE FIX: Point to the 'Dracula' folder inside the GitHub repo ---
+  xdg.configFile."Kvantum/Dracula".source = "${dracula-kvantum-src}/Dracula";
 
   # Tell Kvantum to actively use the Dracula theme
   xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
@@ -49,7 +60,7 @@
     theme=Dracula
   '';
 
-  # 4. Explicitly Enforce Environment Variables globally
+  # 4. Explicitly Enforce Environment Variables
   home.sessionVariables = {
     QT_STYLE_OVERRIDE = "kvantum";
     QT_QPA_PLATFORMTHEME = "kvantum";
