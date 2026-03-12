@@ -39,7 +39,8 @@
     lxmenu-data
     obconf
     lxappearance
-    nitrogen
+    feh
+    # nitrogen
     tint2
     dunst
 

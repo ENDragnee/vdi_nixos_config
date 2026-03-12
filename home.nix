@@ -19,7 +19,7 @@
     ./modules/tint2.nix
     ./modules/rofi.nix
     ./modules/rofi-powermenu.nix
-    ./modules/nitrogen.nix
+    # ./modules/nitrogen.nix
   ];
 
   programs.git = {

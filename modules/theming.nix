@@ -55,4 +55,6 @@
     XCURSOR_THEME = "Dracula-cursors";
     XCURSOR_SIZE = "24";
   };
+
+  xdg.configFile."wallpapers/lock.jpg".source = ./assets/wallpapers/lock.jpg;
 }
