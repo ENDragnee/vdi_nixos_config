@@ -10,7 +10,7 @@
     repo = "Yet-another-dracula";
     rev = "master";
     # Use lib.fakeHash. Nix will fail and give you the real hash to paste here.
-    hash = lib.fakeHash;
+    hash = "sha256-/s04K9VCPetJPIey9EJr7rBxcR/dIsUBlpKPJsoxioQ=";
   };
 in {
   # We no longer need dracula-qt5-theme from Nixpkgs since we are fetching it manually
