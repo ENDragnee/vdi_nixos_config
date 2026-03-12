@@ -51,7 +51,7 @@ in {
   };
 
   # --- THE FIX: Point to the 'Dracula' folder inside the GitHub repo ---
-  xdg.configFile."Kvantum/Yet-another-dracula".source = dracula-kvantum-src;
+  xdg.configFile."Kvantum/Yet-another-dracula".source = "${dracula-kvantum-src}/Yet-another-dracula/Kvantum/Yet-another-dracula";
 
   # Tell Kvantum to actively use the Dracula theme
   xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
