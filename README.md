@@ -104,49 +104,58 @@ Once the VM starts:
 
 ---
 
-# Features summary of the VDI golden Image
+This looks like a professional-grade "Golden Image" configuration. Here is an updated summary and an enhanced TODO list, incorporating the technical milestones you’ve successfully cleared.
 
-- Ephemeral and Immutable system
-- Support of AASTU curriculum softwares
-- Low Resource usage
-- Clean and Easy to understand UI and UX
+---
 
-# Todo List:
+# Features Summary: VDI Golden Image
 
-    - [x] fully declarative config:
-    	- [x] openbox
-    	- [x] chromium
-    	- [x] clipcat
-    	- [x] Code
-    	- [x] dconf
-    	- [x] environment.d
-    	- [x] fish
-    	- [x] fontconfig
-    	- [x] git
-    	- [x] gtk-2.0
-    	- [x] gtk-3.0
-    	- [x] htop
-    	- [x] Kvantum
-    	- [x] mimeapps.list
-    	- [x] nemo
-    	- [x] nitrogen
-    	- [x] procps
-    	- [x] pulse
-    	- [x] qt5ct
-    	- [x] qt6ct
-    	- [x] rofi
-    	- [x] systemd
-    	- [x] tint2
-    	- [x] xarchiver
-    - [x] immutable system
-    - [x] ephemeral system
-    - [ ] golang agent: for remote command executions
-    - [x] setup telegraf with:
-    	- [x] influxdb
-    	- [x] apache kafka
-    - [x] window manager clean up
-    - [ ] quality of life improvements:
-    	- [ ] power menu font
-    	- [ ] UI/UX on panel
-    	- [ ] Shortcuts and cheatsheet
-    - [x] programming tools setup
+- **Ephemeral & Immutable:** Root filesystem resets to a known clean state on every reboot.
+- **Persistent State:** Intelligent bind-mounts via `impermanence` for personal data, VSCode, browser profiles, and SSH/GPG keys.
+- **Curriculum-Ready:** Pre-configured development environment for C/C++, Java, JS/TS, Node.js, Go, PHP, Docker, Laravel, Python, and Django.
+- **Performance Optimized:** Minimalist Openbox window manager with low memory/CPU footprint.
+- **Modern Dracula UI:** Fully unified Kvantum/GTK/Openbox theme with automated cursor and icon handling.
+- **Automated Observability:** Built-in Telegraf agent streaming system metrics to InfluxDB and Kafka.
+
+---
+
+# TODO List:
+
+### Core Infrastructure
+
+- [x] **Declarative Config:** Entire system, shell, and applications managed via Flakes.
+- [x] **Impermanence & Ephemeral:** Root filesystem (tmpfs) wiped on boot with persistent `/persist` storage.
+- [x] **Immutability:** System state enforced through read-only Nix store symlinks.
+- [x] **User Management:** Password-protected accounts with immutable user settings.
+
+### Observability & Integration
+
+- [x] **Telegraf Setup:** Streaming system telemetry to InfluxDB and Apache Kafka.
+- [ ] **Golang Remote Agent:** Implement agent for secure remote command execution and cluster management.
+
+### UI/UX & Quality of Life
+
+- [x] **Window Manager:** Cleaned and optimized Openbox configuration.
+- [x] **Desktop Panel:** Tint2 panel configured for workspace and system tray management.
+- [ ] **UI/UX Refinements:**
+  - [ ] Align panel elements for better visual balance.
+  - [ ] Synchronize icon sets between Nemo, Tint2, and Rofi.
+- [ ] **Typography & Aesthetics:**
+  - [ ] Harmonize Powermenu icons and font sizing.
+  - [ ] Standardize Nerd Font usage across all apps.
+- [ ] **Cheatsheet & Documentation:**
+  - [ ] Generate an `autostart` shortcut map for users (Openbox keybinds).
+  - [ ] Create a `README` for students on how to access development tools.
+
+### Development Environment
+
+- [x] **Toolchain Setup:** C/C++, Java, Node.js, Go, PHP, Python, Docker, and Web dev tools.
+- [x] **IDE Integration:** Declarative VSCode setup with automatic extension and settings syncing.
+- [ ] **Project Management:**
+  - [ ] Setup `direnv` and `nix-direnv` for project-specific environment switching.
+
+---
+
+### Pro-Tip for your TODOs:
+
+Since you are using `flake.nix`, you can track your "Development Environment" progress by creating a `devShells` section in your `flake.nix` that matches your curriculum requirements. This would allow students to simply type `nix develop` in a folder to get the exact tools they need for their specific assignments!
