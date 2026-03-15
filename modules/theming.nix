@@ -11,6 +11,13 @@
     rev = "master";
     hash = "sha256-/s04K9VCPetJPIey9EJr7rBxcR/dIsUBlpKPJsoxioQ=";
   };
+  # Fetch the official Dracula Openbox theme
+  dracula-openbox-src = pkgs.fetchFromGitHub {
+    owner = "dracula";
+    repo = "openbox";
+    rev = "master";
+    hash = lib.fakeHash; # Change to lib.fakeHash on first run if needed
+  };
 in {
   # We no longer need dracula-qt5-theme from Nixpkgs since we are fetching it manually
   home.packages = with pkgs; [
@@ -69,4 +76,5 @@ in {
   };
 
   xdg.configFile."wallpapers/lock.jpg".source = ./assets/wallpapers/lock.jpg;
+  xdg.dataFile."themes/Dracula-withoutBorder".source = dracula-openbox-src;
 }
