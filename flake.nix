@@ -34,11 +34,15 @@
           home-manager.backupFileExtension = "backup";
 
           home-manager.sharedModules = [
-            impermanence.nixosModules.home-manager.impermanence
             {home.stateVersion = "25.05";}
           ];
 
-          home-manager.users.vdi = import ./home.nix;
+          home-manager.users.vdi = {
+            imports = [
+              ./home.nix
+              impermanence.nixosModules.home-manager.impermanence
+            ];
+          };
         }
       ];
     };

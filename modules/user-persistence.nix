@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  home.persistence."/persist/home/vdi" = {
+  home.persistence."/persist" = {
     directories = [
       "Downloads"
       "Music"
