@@ -16,7 +16,7 @@
     owner = "dracula";
     repo = "openbox";
     rev = "master";
-    hash = lib.fakeHash; # Change to lib.fakeHash on first run if needed
+    hash = "sha256-oxPGcR3+lzJaDvtg/Deuvw5+DKKZo9LD2x0i6cTZu8M="; # Change to lib.fakeHash on first run if needed
   };
 in {
   # We no longer need dracula-qt5-theme from Nixpkgs since we are fetching it manually
