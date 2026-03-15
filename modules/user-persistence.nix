@@ -33,7 +33,5 @@
     files = [
       ".bash_history"
     ];
-
-    allowOther = true;
   };
 }
