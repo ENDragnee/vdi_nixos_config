@@ -23,8 +23,8 @@
       }
 
       /*****----- Global Properties -----*****/
-      @import                        "shared/colors.rasi"
-      @import                        "shared/fonts.rasi"
+      @import                        "~/.config/rofi/applets/shared/colors.rasi"
+      @import                        "~/.config/rofi/applets/shared/fonts.rasi"
 
       /*****----- Main Window -----*****/
       window {

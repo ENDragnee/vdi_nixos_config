@@ -349,7 +349,7 @@
      **/
 
     * {
-        font: "JetBrains Mono Nerd Font 10";
+        font: "RobotoMono Nerd Font 10";
     }
   '';
 
