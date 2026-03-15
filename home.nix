@@ -20,6 +20,7 @@
     ./modules/rofi.nix
     ./modules/rofi-powermenu.nix
     ./modules/development.nix
+    ./modules/user-persistence.nix
     # ./modules/nitrogen.nix
   ];
 

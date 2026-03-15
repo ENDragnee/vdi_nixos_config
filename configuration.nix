@@ -4,11 +4,11 @@
   pkgs,
   ...
 }: {
-  imports = [./hardware-configuration.nix];
+  imports = [./hardware-configuration.nix ./modules/system-persistence.nix];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  fileSystems."/persist".neededForBoot = true;
   networking.hostName = "vdi";
   networking.networkmanager.enable = true;
 

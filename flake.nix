@@ -7,12 +7,15 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    impermanence,
     ...
   } @ inputs: {
     nixosConfigurations.vdi = nixpkgs.lib.nixosSystem {
@@ -21,14 +24,21 @@
 
       modules = [
         ./configuration.nix
+
+        impermanence.nixosModules.impermanence
+
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
-          home-manager.users.vdi = import ./home.nix;
 
-          home-manager.sharedModules = [{home.stateVersion = "25.05";}];
+          home-manager.sharedModules = [
+            impermanence.nixosModules.home-manager.impermanence
+            {home.stateVersion = "25.05";}
+          ];
+
+          home-manager.users.vdi = import ./home.nix;
         }
       ];
     };
