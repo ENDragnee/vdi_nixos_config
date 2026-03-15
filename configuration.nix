@@ -109,7 +109,7 @@
 
   services.telegraf = {
     enable = true;
-    environmentFiles = ["/etc/nixos/telegraf.env"];
+    environmentFiles = ["/persist/etc/nixos/telegraf.env"];
     extraConfig = {
       global_tags = {dc = "us-east-1";};
       agent = {
