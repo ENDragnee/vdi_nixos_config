@@ -5,6 +5,7 @@
   ...
 }: {
   home.persistence."/persist" = {
+    allowOther = true;
     directories = [
       "Downloads"
       "Music"
