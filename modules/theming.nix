@@ -76,6 +76,6 @@ in {
   };
 
   xdg.configFile."wallpapers/lock.jpg".source = ./assets/wallpapers/lock.jpg;
-  xdg.dataFile."themes/Dracula-withoutBorder".source = "${dracula-openbox-src}/Dracula-withoutBorder/openbox-3";
-  xdg.dataFile."themes/Dracula".source = "${dracula-openbox-src}/Dracula/openbox-3";
+  xdg.dataFile."themes/Dracula/openbox-3".source = "${dracula-openbox-src}/Dracula/openbox-3";
+  xdg.dataFile."themes/Dracula-withoutBorder/openbox-3".source = "${dracula-openbox-src}/Dracula-withoutBorder/openbox-3";
 }
