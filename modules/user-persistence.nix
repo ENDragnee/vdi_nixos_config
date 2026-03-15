@@ -20,10 +20,22 @@
       ".cache/clipcat" # Clipboard history
 
       # Security & SSH
-      ".ssh"
-      ".gnupg"
-      ".age" # Your SOPS age keys
-      ".local/share/keyrings"
+      {
+        directory = ".ssh";
+        mode = "0700";
+      }
+      {
+        directory = ".gnupg";
+        mode = "0700";
+      }
+      {
+        directory = ".age";
+        mode = "0700";
+      }
+      {
+        directory = ".local/share/keyrings";
+        mode = "0700";
+      }
 
       # Shell State
       ".local/share/direnv"

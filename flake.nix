@@ -36,13 +36,7 @@
           home-manager.sharedModules = [
             {home.stateVersion = "25.05";}
           ];
-
-          home-manager.users.vdi = {
-            imports = [
-              ./home.nix
-              impermanence.nixosModules.home-manager.impermanence
-            ];
-          };
+          home-manager.users.vdi = import ./home.nix;
         }
       ];
     };
