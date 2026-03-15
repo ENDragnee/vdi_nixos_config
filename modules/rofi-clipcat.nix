@@ -27,8 +27,8 @@
     }
 
     /*****----- Global Properties -----*****/
-    @import                          "shared/colors.rasi"
-    @import                          "shared/fonts.rasi"
+    @import                          "~/.config/rofi/applet/shared/colors.rasi"
+    @import                          "~/.config/rofi/applet/shared/fonts.rasi"
 
     * {
         border-colour:               var(selected);
