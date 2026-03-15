@@ -21,6 +21,10 @@
       "/var/lib/systemd/coredump"
       "/var/lib/docker" # CRITICAL: Keeps your docker containers/images
       "/etc/NetworkManager/system-connections" # Keeps WiFi passwords
+
+      "/var/lib/lightdm"
+      "/var/cache/lightdm"
+      "/var/lib/AccountsService"
     ];
 
     files = [

@@ -35,8 +35,11 @@
     neededForBoot = true;
   };
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/55f3cb26-77ea-4c57-b30f-022f08043068";
-    fsType = "ext4";
+    device = "/persist/nix";
+    depends = ["/persist"]; # Ensure /persist is mounted first
+    fsType = "none";
+    options = ["bind"];
+    neededForBoot = true;
   };
 
   swapDevices = [];

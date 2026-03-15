@@ -79,6 +79,7 @@
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "docker"];
     shell = pkgs.fish;
+    hashedPassword = "$6$lcHDtlSQnITA/LkO$a1uRD4DSqFiTYEoKn5xajAIIQ3t.mDSt1ILIbneXtCnunr16bx7.hRwFBZ.pUo3UVxuGIepac/vhsrJjtq4wA1";
   };
 
   programs.fish.enable = true;
