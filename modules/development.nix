@@ -50,41 +50,43 @@
   # Manage VSCode and its Extensions Declaratively
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      # C/C++
-      ms-vscode.cpptools
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
+        # C/C++
+        ms-vscode.cpptools
 
-      # Java
-      redhat.java
-      vscjava.vscode-java-debug
-      vscjava.vscode-java-test
-      vscjava.vscode-maven
+        # Java
+        redhat.java
+        vscjava.vscode-java-debug
+        vscjava.vscode-java-test
+        vscjava.vscode-maven
 
-      # Web (JS/TS/HTML/CSS)
-      dbaeumer.vscode-eslint
-      esbenp.prettier-vscode
+        # Web (JS/TS/HTML/CSS)
+        dbaeumer.vscode-eslint
+        esbenp.prettier-vscode
 
-      # Go
-      golang.go
+        # Go
+        golang.go
 
-      # Python
-      ms-python.python
-      ms-python.vscode-pylance
+        # Python
+        ms-python.python
+        ms-python.vscode-pylance
 
-      # Docker
-      ms-azuretools.vscode-docker
+        # Docker
+        ms-azuretools.vscode-docker
 
-      # Optional: Dracula Theme for VSCode!
-      dracula-theme.theme-dracula
-    ];
+        # Optional: Dracula Theme for VSCode!
+        dracula-theme.theme-dracula
+      ];
 
-    # Configure VSCode settings directly in Nix!
-    userSettings = {
-      "workbench.colorTheme" = "Dracula";
-      "editor.formatOnSave" = true;
-      "[python]" = {"editor.defaultFormatter" = "ms-python.black-formatter";};
-      "[javascript]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
-      "[html]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
+      # Configure VSCode settings directly in Nix!
+      userSettings = {
+        "workbench.colorTheme" = "Dracula";
+        "editor.formatOnSave" = true;
+        "[python]" = {"editor.defaultFormatter" = "ms-python.black-formatter";};
+        "[javascript]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
+        "[html]" = {"editor.defaultFormatter" = "esbenp.prettier-vscode";};
+      };
     };
   };
 }
