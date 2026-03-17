@@ -125,6 +125,11 @@
           api_token = "$PROXMOX_API_TOKEN";
           additional_vmstats_tags = ["vmid" "status"];
           insecure_skip_verify = true;
+          interval = "30s";
+          response_timeout = "20s";
+          tagpass = {
+            vmid = ["100" "105" "110"];
+          };
         };
         disk = {mount_points = ["/"];};
         diskio = {};
