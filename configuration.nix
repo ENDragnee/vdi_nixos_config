@@ -124,6 +124,7 @@
           base_url = "$PROXMOX_URL";
           api_token = "$PROXMOX_API_TOKEN";
           additional_vmstats_tags = ["vmid" "status"];
+          insecure_skip_verify = true;
         };
         disk = {mount_points = ["/"];};
         diskio = {};
