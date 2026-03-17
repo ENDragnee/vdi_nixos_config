@@ -129,7 +129,7 @@
           interval = "30s";
           response_timeout = "20s";
           tagpass = {
-            vmid = ["100" "105" "110"];
+            vm_id = ["100" "105" "110"];
           };
         };
         disk = {mount_points = ["/"];};
