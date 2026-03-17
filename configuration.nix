@@ -9,7 +9,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   fileSystems."/persist".neededForBoot = true;
-  networking.hostName = "vdi";
+  # networking.hostName = "vdi";
+  networking.hostName = lib.mkDefault "nixos";
+  services.cloud-init.enable = true;
+  services.cloud-init.settings = {
+    preserve_hostname = false;
+  };
   networking.networkmanager.enable = true;
 
   time.timeZone = "Africa/Addis_Ababa";
