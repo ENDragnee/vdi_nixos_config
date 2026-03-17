@@ -124,7 +124,6 @@
           base_url = "$PROXMOX_URL";
           api_token = "$PROXMOX_API_TOKEN";
           node = "pve";
-          gather_cluster_info = false;
           additional_vmstats_tags = ["vmid" "status"];
           insecure_skip_verify = true;
           interval = "30s";
