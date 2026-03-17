@@ -124,11 +124,7 @@
           base_url = "$PROXMOX_URL";
           api_token = "$PROXMOX_API_TOKEN";
           node = "pve";
-          collect_cpu = false;
-          collect_disk = false;
-          collect_memory = false;
-          collect_network = false;
-          collect_qemu = true; # This is what gives you VM stats
+          gather_cluster_info = false;
           additional_vmstats_tags = ["vmid" "status"];
           insecure_skip_verify = true;
           interval = "30s";
