@@ -151,7 +151,7 @@
           brokers = ["$KAFKA_URL"];
           topic = "vm-metrics";
           data_format = "json";
-          namepass = ["proxmox"];
+          namepass = ["proxmox_*"];
         };
       };
     };
