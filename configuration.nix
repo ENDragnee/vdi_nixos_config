@@ -105,6 +105,7 @@
     pipx
     sops
     age
+    cloud-init
   ];
 
   environment.variables = {
