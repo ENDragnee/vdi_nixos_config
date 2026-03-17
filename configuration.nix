@@ -128,9 +128,6 @@
           insecure_skip_verify = true;
           interval = "30s";
           response_timeout = "20s";
-          tagpass = {
-            vm_id = ["100" "105" "110"];
-          };
         };
         disk = {mount_points = ["/"];};
         diskio = {};
