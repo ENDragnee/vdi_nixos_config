@@ -103,8 +103,6 @@
   ];
 
   environment.variables = {
-    INFLUX_TOKEN = "1U3fzAh3aTgrZwACibfv4sjHfNdVKu-VR80x4QXXoH_pGySUGSduzXmk2zUTZV50ZnTXzZHTQl6zLBXb9XmokA==";
-    POSTGRES_PASSWORD = "qazwsxedc";
   };
 
   services.telegraf = {
@@ -122,6 +120,11 @@
           totalcpu = true;
           report_active = true;
         };
+        proxmox = {
+          base_url = "$PROXMOX_URL";
+          api_token = "$PROXMOX_API_TOKEN";
+          additional_vmstats_tags = ["vmid" "status"];
+        };
         disk = {mount_points = ["/"];};
         diskio = {};
         kernel = {};
@@ -133,13 +136,13 @@
       };
       outputs = {
         influxdb_v2 = {
-          urls = ["http://192.168.53.107:8086"];
+          urls = ["$INFLUX_URL"];
           token = "$INFLUX_TOKEN";
           organization = "code_tamers";
           bucket = "vdi_bucket";
         };
         kafka = {
-          brokers = ["192.168.53.107:9092"];
+          brokers = ["$KAFKA_URL"];
           topic = "vm-metrics";
           data_format = "json";
         };
