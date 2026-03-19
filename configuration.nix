@@ -14,10 +14,22 @@
   networking.hostName = lib.mkDefault "";
   services.cloud-init = {
     enable = true;
-    network.enable = true;
+    network.enable = false;
     settings = {
       preserve_hostname = false;
       manage_etc_hosts = true;
+      cloud_init_modules = [
+        "migrator"
+        "seed_relabel"
+        "bootcmd"
+        "write-files"
+        "growpart"
+        "resizefs"
+        "set_hostname" # Keep this for your hostname injection!
+        "update_hostname"
+        "update_etc_hosts"
+      ];
+      disabled_plugins = ["ssh"];
     };
   };
   networking.networkmanager.enable = true;
