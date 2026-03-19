@@ -31,6 +31,7 @@
 
     files = [
       "/etc/machine-id"
+      "/etc/hostname"
     ];
   };
 
