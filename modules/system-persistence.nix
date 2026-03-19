@@ -25,7 +25,6 @@
       "/var/lib/lightdm"
       "/var/cache/lightdm"
       "/var/lib/AccountsService"
-      # "/var/lib/cloud"
       "/etc/ssh"
     ];
 

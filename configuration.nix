@@ -100,6 +100,20 @@
     settings = {
       PasswordAuthentication = true;
       PermitRootLogin = "prohibit-password";
+      cloud_init_modules = [
+        "migrator"
+        "seed_relabel"
+        "bootcmd"
+        "write-files"
+        "growpart"
+        "resizefs"
+        "set_hostname"
+        "update_hostname"
+        "update_etc_hosts"
+        "ca-certs"
+        "rsyslog"
+        "timezone"
+      ];
     };
   };
   virtualisation.docker.enable = true;
