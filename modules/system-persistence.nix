@@ -19,20 +19,18 @@
       "/var/log"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
-      "/var/lib/docker" # CRITICAL: Keeps your docker containers/images
-      "/etc/NetworkManager/system-connections" # Keeps WiFi passwords
+      "/var/lib/docker"
+      "/etc/NetworkManager/system-connections"
 
       "/var/lib/lightdm"
       "/var/cache/lightdm"
       "/var/lib/AccountsService"
-      "/var/lib/cloud"
+      # "/var/lib/cloud"
       "/etc/ssh"
     ];
 
     files = [
       "/etc/machine-id"
-      "/etc/hostname"
-      "/etc/static/hostname"
     ];
   };
 

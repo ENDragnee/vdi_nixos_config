@@ -9,6 +9,20 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   fileSystems."/persist".neededForBoot = true;
+
+  networking.hostName = lib.mkForce "";
+
+  systemd.services.break-hostname-symlink = {
+    description = "Break NixOS hostname symlink for Cloud-Init";
+    before = ["cloud-init.service" "systemd-logind.service"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.coreutils}/bin/rm -f /etc/hostname";
+    };
+  };
+
   services.cloud-init = {
     enable = true;
     network.enable = true;
@@ -17,6 +31,7 @@
       manage_etc_hosts = true;
     };
   };
+  services.qemuGuest.enable = true;
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
