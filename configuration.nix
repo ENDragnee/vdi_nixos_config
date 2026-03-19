@@ -18,6 +18,8 @@
     };
   };
   networking.networkmanager.enable = true;
+  systemd.services.systemd-networkd-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   time.timeZone = "Africa/Addis_Ababa";
   i18n.defaultLocale = "en_US.UTF-8";
