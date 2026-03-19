@@ -11,17 +11,13 @@
   fileSystems."/persist".neededForBoot = true;
   services.cloud-init = {
     enable = true;
-    network.enable = true;
+    network.enable = false;
     settings = {
       preserve_hostname = false;
       manage_etc_hosts = true;
     };
   };
-  networking.useNetworkd = true;
-  systemd.network.enable = true;
-
-  networking.useDHCP = false;
-  networking.networkmanager.enable = false;
+  networking.networkmanager.enable = true;
 
   time.timeZone = "Africa/Addis_Ababa";
   i18n.defaultLocale = "en_US.UTF-8";
