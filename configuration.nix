@@ -17,6 +17,10 @@
       manage_etc_hosts = true;
     };
   };
+  networking.useNetworkd = true;
+  systemd.network.enable = true;
+
+  networking.useDHCP = false;
   networking.networkmanager.enable = false;
 
   time.timeZone = "Africa/Addis_Ababa";
