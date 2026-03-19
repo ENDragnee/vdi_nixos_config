@@ -26,6 +26,7 @@
       "/var/cache/lightdm"
       "/var/lib/AccountsService"
       "/var/lib/cloud"
+      "/etc/ssh"
     ];
 
     files = [
