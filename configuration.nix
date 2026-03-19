@@ -10,13 +10,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
   fileSystems."/persist".neededForBoot = true;
   # networking.hostName = "vdi";
-  networking.hostName = "";
-
+  # networking.hostName = lib.mkDefault "nixos";
+  networking.hostName = lib.mkDefault "";
   services.cloud-init = {
     enable = true;
     network.enable = true;
     settings = {
       preserve_hostname = false;
+      manage_etc_hosts = true;
     };
   };
   networking.networkmanager.enable = true;
@@ -163,6 +164,6 @@
       };
     };
   };
-
+  networking.firewall.allowedTCPPorts = [22];
   system.stateVersion = "25.05";
 }
