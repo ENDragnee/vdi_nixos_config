@@ -9,27 +9,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   fileSystems."/persist".neededForBoot = true;
-  # networking.hostName = "vdi";
-  # networking.hostName = lib.mkDefault "nixos";
-  networking.hostName = lib.mkDefault "";
   services.cloud-init = {
     enable = true;
-    network.enable = false;
+    network.enable = true;
     settings = {
       preserve_hostname = false;
       manage_etc_hosts = true;
-      cloud_init_modules = [
-        "migrator"
-        "seed_relabel"
-        "bootcmd"
-        "write-files"
-        "growpart"
-        "resizefs"
-        "set_hostname" # Keep this for your hostname injection!
-        "update_hostname"
-        "update_etc_hosts"
-      ];
-      disabled_plugins = ["ssh"];
     };
   };
   networking.networkmanager.enable = true;
@@ -94,7 +79,13 @@
   services.libinput.enable = true;
   services.dbus.enable = true;
   security.polkit.enable = true;
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = true;
+      PermitRootLogin = "prohibit-password";
+    };
+  };
   virtualisation.docker.enable = true;
 
   users.users.vdi = {
@@ -102,6 +93,10 @@
     extraGroups = ["wheel" "networkmanager" "docker"];
     shell = pkgs.fish;
     hashedPassword = "$6$lcHDtlSQnITA/LkO$a1uRD4DSqFiTYEoKn5xajAIIQ3t.mDSt1ILIbneXtCnunr16bx7.hRwFBZ.pUo3UVxuGIepac/vhsrJjtq4wA1";
+
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEf+6huo0y/HsiTOgh2UgQVP6PK7AtiCzqhKSeAKEIlpguImNOzI0n+mkoTTBqJsdbagySqAtNLagw+APh3fPNXb4UyHdbXUeo1UWe9T55lRaeYH0emqbtHx0Dekd3uqGNQTRAq0Aw6kItSfMoyS6Bx5UFE5U5v+pVvwfa20p6OMtmVWz+C88bds1LPJbmnd91VF+lcKDOnUPdYu+FT8nGxMVuA354SbaUHgcFqayj7a4HZ5gbki7GZ4Bbc4DLysE1cjHx1Y2UiMCg+q4dWiMgQAwv9Ag32gSSQaP2CpfKMQ41wtvLppUVJnRFbfzePuQ5uLCfpCLXxWGRpJFjFt9"
+    ];
   };
   users.mutableUsers = false;
 
