@@ -44,6 +44,13 @@
         "rsyslog"
         "timezone"
       ];
+      cloud_config_modules = [
+        "ssh"
+        "mounts"
+        "locale"
+        "timezone"
+        "runcmd"
+      ];
     };
   };
   services.qemuGuest.enable = true;
