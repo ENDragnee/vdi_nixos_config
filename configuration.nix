@@ -18,8 +18,8 @@
     };
   };
   networking.networkmanager.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
-  systemd.services.systemd-networkd-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   time.timeZone = "Africa/Addis_Ababa";
   i18n.defaultLocale = "en_US.UTF-8";
 
