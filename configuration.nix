@@ -92,7 +92,7 @@
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "docker"];
     shell = pkgs.fish;
-    hashedPassword = "$6$lcHDtlSQnITA/LkO$a1uRD4DSqFiTYEoKn5xajAIIQ3t.mDSt1ILIbneXtCnunr16bx7.hRwFBZ.pUo3UVxuGIepac/vhsrJjtq4wA1";
+    hashedPassword = "$y$j9T$.RmkzUgf2SjGNnPWHnk1R.$6JTMBVEqgzdcg6zApEF3UP/Lua2pIe7OMPizgKnIcTA";
 
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEf+6huo0y/HsiTOgh2UgQVP6PK7AtiCzqhKSeAKEIlpguImNOzI0n+mkoTTBqJsdbagySqAtNLagw+APh3fPNXb4UyHdbXUeo1UWe9T55lRaeYH0emqbtHx0Dekd3uqGNQTRAq0Aw6kItSfMoyS6Bx5UFE5U5v+pVvwfa20p6OMtmVWz+C88bds1LPJbmnd91VF+lcKDOnUPdYu+FT8nGxMVuA354SbaUHgcFqayj7a4HZ5gbki7GZ4Bbc4DLysE1cjHx1Y2UiMCg+q4dWiMgQAwv9Ag32gSSQaP2CpfKMQ41wtvLppUVJnRFbfzePuQ5uLCfpCLXxWGRpJFjFt9"
