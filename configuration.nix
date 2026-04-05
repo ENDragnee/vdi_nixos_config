@@ -88,13 +88,16 @@
     };
   };
   services.qemuGuest.enable = true;
+  networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   systemd.services.cloud-init.serviceConfig.SuccessExitStatus = [0 1 2 3 4 5 6 7 8 9];
   systemd.services.cloud-config.serviceConfig.SuccessExitStatus = [0 1];
   systemd.services.cloud-final.serviceConfig.SuccessExitStatus = [0 1];
-  networking.networkmanager.enable = false;
-  networking.useNetworkd = true;
-  networking.useDHCP = false; # optional – uncomment if you want Proxmox cloud-init to fully control IP/DNS
-  systemd.services.systemd-networkd-wait-online.enable = true;
+  # networking.networkmanager.enable = false;
+  # networking.useNetworkd = true;
+  # networking.useDHCP = false; # optional – uncomment if you want Proxmox cloud-init to fully control IP/DNS
+  # systemd.services.systemd-networkd-wait-online.enable = true;
   # systemd.services.display-manager.after = [
   #   "systemd-user-sessions.service"
   #   # "cloud-init.service"
