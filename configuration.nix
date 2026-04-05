@@ -22,9 +22,14 @@
       ];
     }
   ];
+  systemd.services.cloud-init.restartIfChanged = false;
+  systemd.services.cloud-config.restartIfChanged = false;
+  systemd.services.cloud-final.restartIfChanged = false;
+  systemd.services.cloud-init-local.restartIfChanged = false;
   systemd.services.vdi-agent = {
     description = "VDI NixOS Sync Agent";
     after = ["network-online.target"];
+    wants = ["network-online.target"];
     wantedBy = ["multi-user.target"];
     path = with pkgs; [git sudo nixos-rebuild];
     serviceConfig = {
