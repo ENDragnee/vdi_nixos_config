@@ -35,7 +35,7 @@
     after = ["network-online.target"];
     wants = ["network-online.target"];
     wantedBy = ["multi-user.target"];
-    path = with pkgs; [git nixos-rebuild "/run/wrappers/bin"];
+    path = with pkgs; [git nixos-rebuild "/run/wrappers"];
     serviceConfig = {
       # Path to your compiled Go binary (you can SCP this to /persist/bin/vdi-agent for now)
       ExecStart = "/persist/bin/vdi-agent";
@@ -218,15 +218,15 @@
           totalcpu = true;
           report_active = true;
         };
-        proxmox = {
-          base_url = "$PROXMOX_URL";
-          api_token = "$PROXMOX_API_TOKEN";
-          node_name = "pve";
-          # additional_vmstats_tags = ["vmid" "status"];
-          insecure_skip_verify = true;
-          interval = "30s";
-          response_timeout = "20s";
-        };
+        # proxmox = {
+        #   base_url = "$PROXMOX_URL";
+        #   api_token = "$PROXMOX_API_TOKEN";
+        #   node_name = "pve";
+        #   # additional_vmstats_tags = ["vmid" "status"];
+        #   insecure_skip_verify = true;
+        #   interval = "30s";
+        #   response_timeout = "20s";
+        # };
         disk = {mount_points = ["/"];};
         diskio = {};
         kernel = {};
