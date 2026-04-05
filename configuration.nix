@@ -49,13 +49,7 @@
   };
   systemd.services.break-hostname-symlink = {
     description = "Break NixOS hostname symlink for Cloud-Init";
-    before = [
-      "cloud-init.service"
-      "cloud-config.service"
-      "cloud-final.service"
-      "display-manager.service" # ← critical for first greeter
-      "systemd-logind.service"
-    ];
+    before = ["cloud-init.service" "systemd-logind.service"];
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "oneshot";
@@ -68,9 +62,9 @@
     enable = true;
     network.enable = true;
     settings = {
-      datasource_list = ["NoCloud" "None"]; # "None" is the important fallback
+      # datasource_list = ["NoCloud" "None"]; # "None" is the important fallback
       preserve_hostname = false;
-      # manage_etc_hosts = true;
+      manage_etc_hosts = true;
 
       ssh_deletekeys = false;
       ssh_genkeytypes = [];
@@ -101,11 +95,11 @@
   networking.useNetworkd = true;
   networking.useDHCP = false; # optional – uncomment if you want Proxmox cloud-init to fully control IP/DNS
   systemd.services.systemd-networkd-wait-online.enable = true;
-  systemd.services.display-manager.after = [
-    "systemd-user-sessions.service"
-    # "cloud-init.service"
-    # "cloud-config.service"
-  ];
+  # systemd.services.display-manager.after = [
+  #   "systemd-user-sessions.service"
+  #   # "cloud-init.service"
+  #   # "cloud-config.service"
+  # ];
   # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   time.timeZone = "Africa/Addis_Ababa";
