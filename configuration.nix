@@ -26,7 +26,7 @@
     description = "VDI NixOS Sync Agent";
     after = ["network-online.target"];
     wantedBy = ["multi-user.target"];
-
+    path = with pkgs; [git sudo nixos-rebuild];
     serviceConfig = {
       # Path to your compiled Go binary (you can SCP this to /persist/bin/vdi-agent for now)
       ExecStart = "/persist/bin/vdi-agent";
