@@ -62,7 +62,7 @@
     enable = true;
     network.enable = true;
     settings = {
-      datasource_list = ["NoCloud"];
+      # datasource_list = ["NoCloud" "None"]; # "None" is the important fallback
       preserve_hostname = false;
       # manage_etc_hosts = true;
 
@@ -106,6 +106,8 @@
   };
   services.qemuGuest.enable = true;
   networking.networkmanager.enable = false;
+  networking.useNetworkd = true;
+  networking.useDHCP = false; # optional – uncomment if you want Proxmox cloud-init to fully control IP/DNS
   systemd.services.systemd-networkd-wait-online.enable = true;
   systemd.services.display-manager.after = ["systemd-user-sessions.service"];
   # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
