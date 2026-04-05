@@ -23,9 +23,13 @@
     }
   ];
   systemd.services.cloud-init.restartIfChanged = false;
+  systemd.services.cloud-init.stopIfChanged = false;
   systemd.services.cloud-config.restartIfChanged = false;
+  systemd.services.cloud-config.stopIfChanged = false;
   systemd.services.cloud-final.restartIfChanged = false;
+  systemd.services.cloud-final.stopIfChanged = false;
   systemd.services.cloud-init-local.restartIfChanged = false;
+  systemd.services.cloud-init-local.stopIfChanged = false;
   systemd.services.vdi-agent = {
     description = "VDI NixOS Sync Agent";
     after = ["network-online.target"];
@@ -215,7 +219,7 @@
           base_url = "$PROXMOX_URL";
           api_token = "$PROXMOX_API_TOKEN";
           node_name = "pve";
-          additional_vmstats_tags = ["vmid" "status"];
+          # additional_vmstats_tags = ["vmid" "status"];
           insecure_skip_verify = true;
           interval = "30s";
           response_timeout = "20s";
