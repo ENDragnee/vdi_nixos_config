@@ -66,11 +66,6 @@
       preserve_hostname = false;
       # manage_etc_hosts = true;
 
-      datasource = {
-        NoCloud = {
-          dsmode = "local";
-        };
-      };
       ssh_deletekeys = false;
       ssh_genkeytypes = [];
 
@@ -111,8 +106,10 @@
   };
   services.qemuGuest.enable = true;
   networking.networkmanager.enable = false;
-  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = true;
+  systemd.services.display-manager.after = ["systemd-user-sessions.service"];
+  # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   time.timeZone = "Africa/Addis_Ababa";
   i18n.defaultLocale = "en_US.UTF-8";
 
