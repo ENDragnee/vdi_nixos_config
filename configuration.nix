@@ -33,13 +33,10 @@
       "/run/current-system/sw"
     ];
     serviceConfig = {
-      # Path to your compiled Go binary (you can SCP this to /persist/bin/vdi-agent for now)
       ExecStart = "/persist/bin/vdi-agent";
 
-      # Load the secrets so they aren't visible in the Nix store
       EnvironmentFile = "/persist/etc/vdi-agent.env";
 
-      # Run as your normal user so git pull works with your user's SSH keys
       User = "vdi";
       Group = "users";
 
@@ -62,7 +59,6 @@
     enable = true;
     network.enable = true;
     settings = {
-      # datasource_list = ["NoCloud" "None"]; # "None" is the important fallback
       preserve_hostname = false;
       manage_etc_hosts = true;
 
@@ -71,7 +67,7 @@
 
       cloud_init_modules = [
         "migrator"
-        "seed_random" # ← also fix this (you had seed_relabel, wrong module)
+        "seed_random"
         "bootcmd"
         "write-files"
         "growpart"
@@ -94,17 +90,6 @@
   systemd.services.cloud-init.serviceConfig.SuccessExitStatus = [0 1 2 3 4 5 6 7 8 9];
   systemd.services.cloud-config.serviceConfig.SuccessExitStatus = [0 1];
   systemd.services.cloud-final.serviceConfig.SuccessExitStatus = [0 1];
-  # networking.networkmanager.enable = false;
-  # networking.useNetworkd = true;
-  # networking.useDHCP = false; # optional – uncomment if you want Proxmox cloud-init to fully control IP/DNS
-  # systemd.services.systemd-networkd-wait-online.enable = true;
-  # systemd.services.display-manager.after = [
-  #   "systemd-user-sessions.service"
-  #   # "cloud-init.service"
-  #   # "cloud-config.service"
-  # ];
-  # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-  # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   time.timeZone = "Africa/Addis_Ababa";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -223,15 +208,6 @@
           totalcpu = true;
           report_active = true;
         };
-        # proxmox = {
-        #   base_url = "$PROXMOX_URL";
-        #   api_token = "$PROXMOX_API_TOKEN";
-        #   node_name = "pve";
-        #   # additional_vmstats_tags = ["vmid" "status"];
-        #   insecure_skip_verify = true;
-        #   interval = "30s";
-        #   response_timeout = "20s";
-        # };
         disk = {mount_points = ["/"];};
         diskio = {};
         kernel = {};
