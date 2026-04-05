@@ -113,6 +113,7 @@
   services.qemuGuest.enable = true;
   systemd.services.cloud-config.serviceConfig.SuccessExitStatus = [0 1];
   systemd.services.cloud-final.serviceConfig.SuccessExitStatus = [0 1];
+  systemd.services.cloud-init.serviceConfig.SuccessExitStatus = [0 2];
   networking.networkmanager.enable = false;
   networking.useNetworkd = true;
   networking.useDHCP = false; # optional – uncomment if you want Proxmox cloud-init to fully control IP/DNS
