@@ -10,7 +10,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   fileSystems."/persist".neededForBoot = true;
 
-  networking.hostName = lib.mkForce "";
+  # networking.hostName = lib.mkForce "";
   security.sudo.extraRules = [
     {
       users = ["vdi"];
@@ -22,14 +22,6 @@
       ];
     }
   ];
-  systemd.services.cloud-init.restartIfChanged = lib.mkForce false;
-  systemd.services.cloud-init.stopIfChanged = lib.mkForce false;
-  systemd.services.cloud-config.restartIfChanged = lib.mkForce false;
-  systemd.services.cloud-config.stopIfChanged = lib.mkForce false;
-  systemd.services.cloud-final.restartIfChanged = lib.mkForce false;
-  systemd.services.cloud-final.stopIfChanged = lib.mkForce false;
-  systemd.services.cloud-init-local.restartIfChanged = lib.mkForce false;
-  systemd.services.cloud-init-local.stopIfChanged = lib.mkForce false;
   systemd.services.vdi-agent = {
     description = "VDI NixOS Sync Agent";
     after = ["network-online.target"];
@@ -55,23 +47,24 @@
       RestartSec = "10s";
     };
   };
-  systemd.services.break-hostname-symlink = {
-    description = "Break NixOS hostname symlink for Cloud-Init";
-    before = ["cloud-init.service" "systemd-logind.service"];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStart = "${pkgs.coreutils}/bin/rm -f /etc/hostname";
-    };
-  };
+  # systemd.services.break-hostname-symlink = {
+  #   description = "Break NixOS hostname symlink for Cloud-Init";
+  #   before = ["cloud-init.service" "systemd-logind.service"];
+  #   wantedBy = ["multi-user.target"];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     RemainAfterExit = true;
+  #     ExecStart = "${pkgs.coreutils}/bin/rm -f /etc/hostname";
+  #   };
+  # };
 
   services.cloud-init = {
     enable = true;
-    network.enable = true;
+    network.enable = false;
     settings = {
+      datasource_list = ["NoCloud"];
       preserve_hostname = false;
-      manage_etc_hosts = true;
+      # manage_etc_hosts = true;
 
       ssh_deletekeys = false;
       ssh_genkeytypes = [];
