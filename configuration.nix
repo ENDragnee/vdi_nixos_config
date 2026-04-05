@@ -13,10 +13,10 @@
   networking.hostName = lib.mkForce "";
   security.sudo.extraRules = [
     {
-      users = ["vdi"]; # Or whatever user runs the agent
+      users = ["vdi"];
       commands = [
         {
-          command = "/run/current-system/sw/bin/nixos-rebuild";
+          command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
           options = ["NOPASSWD"];
         }
       ];
