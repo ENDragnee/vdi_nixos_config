@@ -10,7 +10,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   fileSystems."/persist".neededForBoot = true;
 
-  # networking.hostName = lib.mkForce "";
+  networking.hostName = lib.mkForce "";
   security.sudo.extraRules = [
     {
       users = ["vdi"];
@@ -47,48 +47,36 @@
       RestartSec = "10s";
     };
   };
-  # systemd.services.break-hostname-symlink = {
-  #   description = "Break NixOS hostname symlink for Cloud-Init";
-  #   before = ["cloud-init.service" "systemd-logind.service"];
-  #   wantedBy = ["multi-user.target"];
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     RemainAfterExit = true;
-  #     ExecStart = "${pkgs.coreutils}/bin/rm -f /etc/hostname";
-  #   };
-  # };
+  systemd.services.break-hostname-symlink = {
+    description = "Break NixOS hostname symlink for Cloud-Init";
+    before = ["cloud-init.service" "systemd-logind.service"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.coreutils}/bin/rm -f /etc/hostname";
+    };
+  };
 
   services.cloud-init = {
     enable = true;
     network.enable = false;
     settings = {
-      datasource_list = ["NoCloud"];
+      # datasource_list = ["NoCloud"];
       preserve_hostname = false;
       # manage_etc_hosts = true;
 
-      datasource = {
-        NoCloud = {
-          dsmode = "local";
-        };
-      };
+      # datasource = {
+      #   NoCloud = {
+      #     dsmode = "local";
+      #   };
+      # };
       ssh_deletekeys = false;
       ssh_genkeytypes = [];
 
-      cloud_init_modules = [
-        "migrator"
-        "seed_random" # ← also fix this (you had seed_relabel, wrong module)
-        "bootcmd"
-        "write-files"
-        "growpart"
-        "resizefs"
-        "set_hostname"
-        "update_hostname"
-        "update_etc_hosts"
-      ];
       # cloud_init_modules = [
       #   "migrator"
-      #   # "seed_relabel"
-      #   "seed_random"
+      #   "seed_random" # ← also fix this (you had seed_relabel, wrong module)
       #   "bootcmd"
       #   "write-files"
       #   "growpart"
@@ -96,10 +84,22 @@
       #   "set_hostname"
       #   "update_hostname"
       #   "update_etc_hosts"
-      #   "ca-certs"
-      #   "rsyslog"
-      #   "timezone"
       # ];
+      cloud_init_modules = [
+        "migrator"
+        "seed_relabel"
+        # "seed_random"
+        "bootcmd"
+        "write-files"
+        "growpart"
+        "resizefs"
+        "set_hostname"
+        "update_hostname"
+        "update_etc_hosts"
+        "ca-certs"
+        "rsyslog"
+        "timezone"
+      ];
       cloud_config_modules = [
         "ssh"
         "mounts"
