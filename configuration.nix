@@ -110,7 +110,7 @@
     };
   };
   services.qemuGuest.enable = true;
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = false;
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   time.timeZone = "Africa/Addis_Ababa";
