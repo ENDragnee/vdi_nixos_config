@@ -35,7 +35,7 @@
     after = ["network-online.target"];
     wants = ["network-online.target"];
     wantedBy = ["multi-user.target"];
-    path = with pkgs; [git nixos-rebuild];
+    path = with pkgs; [git nixos-rebuild "/run/wrappers/bin"];
     serviceConfig = {
       # Path to your compiled Go binary (you can SCP this to /persist/bin/vdi-agent for now)
       ExecStart = "/persist/bin/vdi-agent";
@@ -68,6 +68,9 @@
     settings = {
       preserve_hostname = false;
       manage_etc_hosts = true;
+
+      ssh_deletekeys = false;
+      ssh_genkeytypes = [];
 
       cloud_init_modules = [
         "migrator"
