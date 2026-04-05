@@ -47,22 +47,16 @@
       RestartSec = "10s";
     };
   };
-  systemd.services.break-hostname-symlink = {
-    description = "Break NixOS hostname symlink for Cloud-Init";
-    before = [
-      "cloud-init.service"
-      "cloud-config.service" # ← added
-      "cloud-final.service" # ← added (extra safety)
-      "display-manager.service" # ← this is the key one
-      "systemd-logind.service"
-    ];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStart = "${pkgs.coreutils}/bin/rm -f /etc/hostname";
-    };
-  };
+  # systemd.services.break-hostname-symlink = {
+  #   description = "Break NixOS hostname symlink for Cloud-Init";
+  #   before = ["cloud-init.service" "systemd-logind.service"];
+  #   wantedBy = ["multi-user.target"];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     RemainAfterExit = true;
+  #     ExecStart = "${pkgs.coreutils}/bin/rm -f /etc/hostname";
+  #   };
+  # };
 
   services.cloud-init = {
     enable = true;
@@ -113,16 +107,11 @@
   services.qemuGuest.enable = true;
   systemd.services.cloud-config.serviceConfig.SuccessExitStatus = [0 1];
   systemd.services.cloud-final.serviceConfig.SuccessExitStatus = [0 1];
-  systemd.services.cloud-init.serviceConfig.SuccessExitStatus = [0 2];
   networking.networkmanager.enable = false;
   networking.useNetworkd = true;
   networking.useDHCP = false; # optional – uncomment if you want Proxmox cloud-init to fully control IP/DNS
   systemd.services.systemd-networkd-wait-online.enable = true;
-  systemd.services.display-manager.after = [
-    "systemd-user-sessions.service"
-    "cloud-init.service" # hostname modules run here
-    "cloud-config.service" # update_hostname + final config
-  ];
+  systemd.services.display-manager.after = ["systemd-user-sessions.service"];
   # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   time.timeZone = "Africa/Addis_Ababa";
