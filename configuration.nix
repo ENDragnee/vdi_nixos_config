@@ -16,7 +16,7 @@
       users = ["vdi"];
       commands = [
         {
-          command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+          command = "/run/current-system/sw/bin/nixos-rebuild";
           options = ["NOPASSWD"];
         }
       ];
@@ -35,7 +35,11 @@
     after = ["network-online.target"];
     wants = ["network-online.target"];
     wantedBy = ["multi-user.target"];
-    path = with pkgs; [git nixos-rebuild "/run/wrappers"];
+    path = [
+      pkgs.git
+      "/run/wrappers"
+      "/run/current-system/sw"
+    ];
     serviceConfig = {
       # Path to your compiled Go binary (you can SCP this to /persist/bin/vdi-agent for now)
       ExecStart = "/persist/bin/vdi-agent";
