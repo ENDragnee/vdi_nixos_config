@@ -22,14 +22,14 @@
       ];
     }
   ];
-  systemd.services.cloud-init.restartIfChanged = false;
-  systemd.services.cloud-init.stopIfChanged = false;
-  systemd.services.cloud-config.restartIfChanged = false;
-  systemd.services.cloud-config.stopIfChanged = false;
-  systemd.services.cloud-final.restartIfChanged = false;
-  systemd.services.cloud-final.stopIfChanged = false;
-  systemd.services.cloud-init-local.restartIfChanged = false;
-  systemd.services.cloud-init-local.stopIfChanged = false;
+  systemd.services.cloud-init.restartIfChanged = lib.mkForce false;
+  systemd.services.cloud-init.stopIfChanged = lib.mkForce false;
+  systemd.services.cloud-config.restartIfChanged = lib.mkForce false;
+  systemd.services.cloud-config.stopIfChanged = lib.mkForce false;
+  systemd.services.cloud-final.restartIfChanged = lib.mkForce false;
+  systemd.services.cloud-final.stopIfChanged = lib.mkForce false;
+  systemd.services.cloud-init-local.restartIfChanged = lib.mkForce false;
+  systemd.services.cloud-init-local.stopIfChanged = lib.mkForce false;
   systemd.services.vdi-agent = {
     description = "VDI NixOS Sync Agent";
     after = ["network-online.target"];
