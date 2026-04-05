@@ -66,12 +66,17 @@
       preserve_hostname = false;
       # manage_etc_hosts = true;
 
+      datasource = {
+        NoCloud = {
+          dsmode = "local";
+        };
+      };
       ssh_deletekeys = false;
       ssh_genkeytypes = [];
 
       cloud_init_modules = [
         "migrator"
-        "seed_relabel"
+        "seed_random" # ← also fix this (you had seed_relabel, wrong module)
         "bootcmd"
         "write-files"
         "growpart"
@@ -79,10 +84,22 @@
         "set_hostname"
         "update_hostname"
         "update_etc_hosts"
-        "ca-certs"
-        "rsyslog"
-        "timezone"
       ];
+      # cloud_init_modules = [
+      #   "migrator"
+      #   # "seed_relabel"
+      #   "seed_random"
+      #   "bootcmd"
+      #   "write-files"
+      #   "growpart"
+      #   "resizefs"
+      #   "set_hostname"
+      #   "update_hostname"
+      #   "update_etc_hosts"
+      #   "ca-certs"
+      #   "rsyslog"
+      #   "timezone"
+      # ];
       cloud_config_modules = [
         "ssh"
         "mounts"
