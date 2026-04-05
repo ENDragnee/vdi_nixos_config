@@ -47,22 +47,22 @@
       RestartSec = "10s";
     };
   };
-  # systemd.services.break-hostname-symlink = {
-  #   description = "Break NixOS hostname symlink for Cloud-Init";
-  #   before = [
-  #     "cloud-init.service"
-  #     "cloud-config.service"
-  #     "cloud-final.service"
-  #     "display-manager.service" # ← critical for first greeter
-  #     "systemd-logind.service"
-  #   ];
-  #   wantedBy = ["multi-user.target"];
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     RemainAfterExit = true;
-  #     ExecStart = "${pkgs.coreutils}/bin/rm -f /etc/hostname";
-  #   };
-  # };
+  systemd.services.break-hostname-symlink = {
+    description = "Break NixOS hostname symlink for Cloud-Init";
+    before = [
+      "cloud-init.service"
+      "cloud-config.service"
+      "cloud-final.service"
+      "display-manager.service" # ← critical for first greeter
+      "systemd-logind.service"
+    ];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.coreutils}/bin/rm -f /etc/hostname";
+    };
+  };
 
   services.cloud-init = {
     enable = true;
