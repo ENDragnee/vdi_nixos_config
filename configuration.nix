@@ -199,13 +199,16 @@
 
   environment.variables = {
   };
-
+  systemd.services.telegraf.serviceConfig = {
+    Environment = "HOSTNAME=%H";
+  };
   services.telegraf = {
     enable = true;
     environmentFiles = ["/persist/etc/nixos/telegraf.env"];
     extraConfig = {
       global_tags = {dc = "us-east-1";};
       agent = {
+        hostname = "$HOSTNAME";
         interval = "10s";
         round_interval = true;
       };
