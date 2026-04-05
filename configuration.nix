@@ -66,11 +66,11 @@
       preserve_hostname = false;
       # manage_etc_hosts = true;
 
-      # datasource = {
-      #   NoCloud = {
-      #     dsmode = "local";
-      #   };
-      # };
+      datasource = {
+        NoCloud = {
+          dsmode = "local";
+        };
+      };
       ssh_deletekeys = false;
       ssh_genkeytypes = [];
 
