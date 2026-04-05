@@ -98,9 +98,9 @@
       cloud_config_modules = [
         "ssh"
         "mounts"
-        "locale"
-        "timezone"
         "runcmd"
+        # "locale"
+        # "timezone"
       ];
     };
   };
