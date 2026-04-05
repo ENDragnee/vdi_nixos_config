@@ -11,7 +11,37 @@
   fileSystems."/persist".neededForBoot = true;
 
   networking.hostName = lib.mkForce "";
+  security.sudo.extraRules = [
+    {
+      users = ["vdi"]; # Or whatever user runs the agent
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = ["NOPASSWD"];
+        }
+      ];
+    }
+  ];
+  systemd.services.vdi-agent = {
+    description = "VDI NixOS Sync Agent";
+    after = ["network-online.target"];
+    wantedBy = ["multi-user.target"];
 
+    serviceConfig = {
+      # Path to your compiled Go binary (you can SCP this to /persist/bin/vdi-agent for now)
+      ExecStart = "/persist/bin/vdi-agent";
+
+      # Load the secrets so they aren't visible in the Nix store
+      EnvironmentFile = "/persist/etc/vdi-agent.env";
+
+      # Run as your normal user so git pull works with your user's SSH keys
+      User = "vdi";
+      Group = "users";
+
+      Restart = "always";
+      RestartSec = "10s";
+    };
+  };
   systemd.services.break-hostname-symlink = {
     description = "Break NixOS hostname symlink for Cloud-Init";
     before = ["cloud-init.service" "systemd-logind.service"];
@@ -209,6 +239,6 @@
       };
     };
   };
-  networking.firewall.allowedTCPPorts = [22];
+  networking.firewall.allowedTCPPorts = [22 8081];
   system.stateVersion = "25.05";
 }
