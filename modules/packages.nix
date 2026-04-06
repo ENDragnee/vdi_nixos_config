@@ -50,5 +50,6 @@
     dracula-icon-theme
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugins
+    micro
   ];
 }
