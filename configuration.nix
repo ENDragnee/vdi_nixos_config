@@ -11,6 +11,8 @@
   fileSystems."/persist".neededForBoot = true;
 
   # networking.hostName = lib.mkForce "";
+  boot.kernelParams = ["console=ttyS0,115200n8"];
+  services.getty.helpLine = "VDI Serial Console";
   security.sudo.extraRules = [
     {
       users = ["vdi"];
