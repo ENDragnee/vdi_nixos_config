@@ -24,6 +24,15 @@
       ];
     }
   ];
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      domain = true;
+    };
+  };
   systemd.services.vdi-agent = {
     description = "VDI NixOS Sync Agent";
     after = ["network-online.target"];
